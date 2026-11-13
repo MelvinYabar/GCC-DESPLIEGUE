@@ -29,6 +29,14 @@ class LibroControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
+    void debeMostrarLaBienvenidaEnLaRutaPrincipal() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.aplicacion").value("Biblioteca API"))
+                .andExpect(jsonPath("$.estado").value("La aplicacion esta funcionando correctamente"));
+    }
+
+    @Test
     void debeListarLosLibrosIniciales() throws Exception {
         mockMvc.perform(get("/api/libros"))
                 .andExpect(status().isOk())

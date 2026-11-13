@@ -2,6 +2,8 @@
 
 Aplicación REST sencilla para registrar y consultar libros recomendados. Está preparada para ejecutarse desde GitHub Codespaces y demostrarse con Postman, Insomnia u otro cliente REST.
 
+Al abrir la URL principal de la aplicación se muestra un mensaje JSON de bienvenida con las rutas disponibles.
+
 ## ¿Qué cumple?
 
 - Aplicación desarrollada con Spring Boot.
