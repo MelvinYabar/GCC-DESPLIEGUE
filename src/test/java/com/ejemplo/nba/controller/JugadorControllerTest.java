@@ -1,4 +1,4 @@
-package com.ejemplo.biblioteca.controller;
+package com.ejemplo.nba.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Map;
 
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-class LibroControllerTest {
+class JugadorControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -32,32 +32,32 @@ class LibroControllerTest {
     void debeMostrarLaBienvenidaEnLaRutaPrincipal() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.aplicacion").value("Biblioteca API"))
+                .andExpect(jsonPath("$.aplicacion").value("NBA Jugadores API"))
                 .andExpect(jsonPath("$.estado").value("La aplicacion esta funcionando correctamente"));
     }
 
     @Test
-    void debeListarLosLibrosIniciales() throws Exception {
-        mockMvc.perform(get("/api/libros"))
+    void debeListarLosJugadoresIniciales() throws Exception {
+        mockMvc.perform(get("/api/jugadores"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].titulo").value("El principito"));
+                .andExpect(jsonPath("$[0].nombre").value("Michael Jordan"));
     }
 
     @Test
-    void debeRegistrarUnLibro() throws Exception {
-        Map<String, Object> libro = Map.of(
-                "titulo", "1984",
-                "autor", "George Orwell",
-                "genero", "Distopia",
-                "anioPublicacion", 1949
+    void debeRegistrarUnJugador() throws Exception {
+        Map<String, Object> jugador = Map.of(
+                "nombre", "LeBron James",
+                "equipo", "Los Angeles Lakers",
+                "posicion", "Alero",
+                "puntosPorPartido", 27.1
         );
 
-        mockMvc.perform(post("/api/libros")
+        mockMvc.perform(post("/api/jugadores")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(libro)))
+                        .content(objectMapper.writeValueAsString(jugador)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value(3))
-                .andExpect(jsonPath("$.titulo").value("1984"));
+                .andExpect(jsonPath("$.nombre").value("LeBron James"));
     }
 }

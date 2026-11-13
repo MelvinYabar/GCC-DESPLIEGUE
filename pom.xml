@@ -12,10 +12,10 @@
     </parent>
 
     <groupId>com.ejemplo</groupId>
-    <artifactId>biblioteca-api</artifactId>
+    <artifactId>nba-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>biblioteca-api</name>
-    <description>API REST sencilla para registrar libros recomendados</description>
+    <name>nba-api</name>
+    <description>API REST sencilla para registrar jugadores de la NBA</description>
 
     <properties>
         <java.version>17</java.version>

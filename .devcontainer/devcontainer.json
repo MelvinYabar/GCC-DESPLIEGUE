@@ -1,5 +1,5 @@
 {
-  "name": "Spring Boot - Biblioteca API",
+  "name": "Spring Boot - NBA API",
   "image": "mcr.microsoft.com/devcontainers/java:1-17-bookworm",
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
@@ -10,7 +10,7 @@
   "forwardPorts": [8080],
   "portsAttributes": {
     "8080": {
-      "label": "Biblioteca API",
+      "label": "NBA Jugadores API",
       "onAutoForward": "notify"
     }
   },

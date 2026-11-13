@@ -1,12 +1,12 @@
-package com.ejemplo.biblioteca;
+package com.ejemplo.nba;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BibliotecaApiApplication {
+public class NbaApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BibliotecaApiApplication.class, args);
+        SpringApplication.run(NbaApiApplication.class, args);
     }
 }

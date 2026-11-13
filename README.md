@@ -1,51 +1,45 @@
-# Biblioteca API - Spring Boot
+# NBA Jugadores API - Spring Boot
 
-Aplicación REST sencilla para registrar y consultar libros recomendados. Está preparada para ejecutarse desde GitHub Codespaces y demostrarse con Postman, Insomnia u otro cliente REST.
+Aplicación REST sencilla para registrar y consultar jugadores de la NBA. Está preparada para ejecutarse desde GitHub Codespaces y demostrarse con Postman, Insomnia u otro cliente REST.
 
-Al abrir la URL principal de la aplicación se muestra un mensaje JSON de bienvenida con las rutas disponibles.
+Al abrir la URL principal se muestra un mensaje JSON de bienvenida con las rutas disponibles.
 
 ## ¿Qué cumple?
 
 - Aplicación desarrollada con Spring Boot.
-- Un método **GET** para consultar libros.
-- Un método **POST** para registrar un libro.
-- Cada objeto tiene cinco campos: `id`, `titulo`, `autor`, `genero` y `anioPublicacion`.
+- Un método **GET** para consultar jugadores.
+- Un método **POST** para registrar un jugador.
+- Cada objeto tiene cinco campos: `id`, `nombre`, `equipo`, `posicion` y `puntosPorPartido`.
 - Respuestas en formato JSON.
 - Configuración para GitHub Codespaces.
 
-> Los datos se almacenan temporalmente en memoria. Al reiniciar la aplicación se recuperan los dos libros iniciales.
+> Los datos se almacenan temporalmente en memoria. Al reiniciar la aplicación se recuperan los dos jugadores iniciales.
 
 ## Ejecutar en GitHub Codespaces
 
-1. Subir este proyecto a un repositorio de GitHub.
-2. En GitHub, seleccionar **Code > Codespaces > Create codespace on main**.
-3. Esperar a que Codespaces termine de preparar el entorno.
-4. Abrir una terminal y ejecutar:
+1. Abrir el repositorio en GitHub Codespaces.
+2. Abrir una terminal y ejecutar:
 
 ```bash
 mvn spring-boot:run
 ```
 
-5. Cuando aparezca `Started BibliotecaApiApplication`, abrir la pestaña **Ports**.
-6. En el puerto `8080`, elegir **Port Visibility > Public** si se probará desde Postman o Insomnia instalado en la computadora.
-7. Copiar la dirección generada por Codespaces. Se verá parecida a:
+3. Cuando aparezca `Started NbaApiApplication`, abrir la pestaña **Ports**.
+4. En el puerto `8080`, elegir **Port Visibility > Public** para probar desde Postman instalado en la computadora.
+5. Copiar la dirección generada por Codespaces.
 
-```text
-https://nombre-del-codespace-8080.app.github.dev
-```
-
-### Usar la colección de Postman incluida
+## Usar la colección de Postman
 
 1. En Postman, seleccionar **Import**.
-2. Importar el archivo `postman/Biblioteca-API.postman_collection.json`.
-3. Abrir la colección **Biblioteca API** y cambiar su variable `baseUrl` por la dirección copiada de Codespaces, sin una barra `/` al final.
-4. Ejecutar las solicitudes en el orden indicado: GET, POST y nuevamente GET.
+2. Importar `postman/NBA-Jugadores-API.postman_collection.json`.
+3. Cambiar la variable `baseUrl` por la dirección de Codespaces, sin una barra `/` al final.
+4. Ejecutar las solicitudes en este orden: GET, POST y nuevamente GET.
 
 ## Probar el método GET
 
 - Método: `GET`
-- URL local: `http://localhost:8080/api/libros`
-- URL en Codespaces: `https://TU-URL-8080.app.github.dev/api/libros`
+- URL local: `http://localhost:8080/api/jugadores`
+- URL en Codespaces: `https://TU-URL-8080.app.github.dev/api/jugadores`
 
 Respuesta esperada (`200 OK`):
 
@@ -53,17 +47,17 @@ Respuesta esperada (`200 OK`):
 [
   {
     "id": 1,
-    "titulo": "El principito",
-    "autor": "Antoine de Saint-Exupery",
-    "genero": "Fabula",
-    "anioPublicacion": 1943
+    "nombre": "Michael Jordan",
+    "equipo": "Chicago Bulls",
+    "posicion": "Escolta",
+    "puntosPorPartido": 30.1
   },
   {
     "id": 2,
-    "titulo": "Cien anios de soledad",
-    "autor": "Gabriel Garcia Marquez",
-    "genero": "Novela",
-    "anioPublicacion": 1967
+    "nombre": "Kobe Bryant",
+    "equipo": "Los Angeles Lakers",
+    "posicion": "Escolta",
+    "puntosPorPartido": 25.0
   }
 ]
 ```
@@ -71,17 +65,16 @@ Respuesta esperada (`200 OK`):
 ## Probar el método POST
 
 - Método: `POST`
-- URL local: `http://localhost:8080/api/libros`
-- URL en Codespaces: `https://TU-URL-8080.app.github.dev/api/libros`
+- URL: `https://TU-URL-8080.app.github.dev/api/jugadores`
 - Encabezado: `Content-Type: application/json`
-- En Postman o Insomnia elegir **Body > JSON** y escribir:
+- Body JSON:
 
 ```json
 {
-  "titulo": "1984",
-  "autor": "George Orwell",
-  "genero": "Distopia",
-  "anioPublicacion": 1949
+  "nombre": "LeBron James",
+  "equipo": "Los Angeles Lakers",
+  "posicion": "Alero",
+  "puntosPorPartido": 27.1
 }
 ```
 
@@ -90,24 +83,25 @@ Respuesta esperada (`201 Created`):
 ```json
 {
   "id": 3,
-  "titulo": "1984",
-  "autor": "George Orwell",
-  "genero": "Distopia",
-  "anioPublicacion": 1949
+  "nombre": "LeBron James",
+  "equipo": "Los Angeles Lakers",
+  "posicion": "Alero",
+  "puntosPorPartido": 27.1
 }
 ```
 
-Después se puede repetir el GET para mostrar que el nuevo libro aparece en la lista.
+Después se repite el GET para mostrar que LeBron James aparece en la lista.
 
 ## Explicación corta para la presentación
 
-1. **Modelo `Libro`:** representa la información que procesa la aplicación. Tiene cinco campos.
-2. **Controlador `LibroController`:** recibe las solicitudes en la ruta `/api/libros`.
-3. **GET:** devuelve la lista completa de libros en formato JSON.
-4. **POST:** recibe un libro en JSON, le asigna un `id`, lo agrega a la lista y devuelve el objeto creado.
-5. **Códigos HTTP:** GET responde `200 OK` y POST responde `201 Created`.
+1. **`NbaApiApplication`:** inicia la aplicación Spring Boot.
+2. **Modelo `Jugador`:** representa los cinco datos que procesa la aplicación.
+3. **`JugadorController`:** recibe las solicitudes en `/api/jugadores`.
+4. **GET:** devuelve la lista completa de jugadores en formato JSON.
+5. **POST:** recibe un jugador, le asigna un `id`, lo agrega a la lista y devuelve el objeto creado.
+6. GET responde `200 OK` y POST responde `201 Created`.
 
-## Ejecutar las pruebas automáticas
+## Ejecutar pruebas automáticas
 
 ```bash
 mvn test

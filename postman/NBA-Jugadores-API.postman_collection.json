@@ -1,7 +1,7 @@
 {
   "info": {
-    "_postman_id": "e11448dc-86ec-4ef1-b909-biblioteca-api",
-    "name": "Biblioteca API",
+    "_postman_id": "e11448dc-86ec-4ef1-b909-nba-jugadores-api",
+    "name": "NBA Jugadores API",
     "description": "Solicitudes para demostrar los métodos GET y POST de la aplicación Spring Boot.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -13,19 +13,19 @@
   ],
   "item": [
     {
-      "name": "1 - Listar libros (GET)",
+      "name": "1 - Listar jugadores (GET)",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "{{baseUrl}}/api/libros",
+          "raw": "{{baseUrl}}/api/jugadores",
           "host": ["{{baseUrl}}"],
-          "path": ["api", "libros"]
+          "path": ["api", "jugadores"]
         }
       }
     },
     {
-      "name": "2 - Registrar libro (POST)",
+      "name": "2 - Registrar jugador (POST)",
       "request": {
         "method": "POST",
         "header": [
@@ -36,7 +36,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"titulo\": \"1984\",\n  \"autor\": \"George Orwell\",\n  \"genero\": \"Distopia\",\n  \"anioPublicacion\": 1949\n}",
+          "raw": "{\n  \"nombre\": \"LeBron James\",\n  \"equipo\": \"Los Angeles Lakers\",\n  \"posicion\": \"Alero\",\n  \"puntosPorPartido\": 27.1\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -44,9 +44,9 @@
           }
         },
         "url": {
-          "raw": "{{baseUrl}}/api/libros",
+          "raw": "{{baseUrl}}/api/jugadores",
           "host": ["{{baseUrl}}"],
-          "path": ["api", "libros"]
+          "path": ["api", "jugadores"]
         }
       }
     }
