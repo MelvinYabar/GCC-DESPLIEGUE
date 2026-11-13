@@ -1,0 +1,54 @@
+{
+  "info": {
+    "_postman_id": "e11448dc-86ec-4ef1-b909-biblioteca-api",
+    "name": "Biblioteca API",
+    "description": "Solicitudes para demostrar los métodos GET y POST de la aplicación Spring Boot.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ],
+  "item": [
+    {
+      "name": "1 - Listar libros (GET)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/libros",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "libros"]
+        }
+      }
+    },
+    {
+      "name": "2 - Registrar libro (POST)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"1984\",\n  \"autor\": \"George Orwell\",\n  \"genero\": \"Distopia\",\n  \"anioPublicacion\": 1949\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/libros",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "libros"]
+        }
+      }
+    }
+  ]
+}
